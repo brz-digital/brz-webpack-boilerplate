@@ -1,6 +1,6 @@
 const glob = require('glob');
 const path = require('path');
-const settings = require('./settings.json');
+const package = require('./package.json');
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
@@ -16,8 +16,8 @@ const pages = () => glob.sync('./src/**/*.html').map(
 
 module.exports = {
   entry: {
+    './scripts/vendors.js': Object.keys(package.dependencies),
     './scripts/scripts.js': ['@babel/polyfill', './src/scripts/app.js'],
-    './scripts/vendors.js': Object.keys(settings.dependencies),
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

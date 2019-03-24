@@ -15,7 +15,8 @@
 - `yarn build`: Build files, compress, optmize and copy all static files (html, images, videos, fonts and favicons) to dist
 
 ### How to installing frontend dependencies?
-We use yarn or npm to manage our frontend dependencies. For example, if you want to install jQuery, you can run `$ yarn add jquery`
+We use yarn or npm to manage our frontend dependencies.
+For example, if you want to install jQuery, you can run `$ yarn add jquery`
 
 ### For default, contains
 - jQuery

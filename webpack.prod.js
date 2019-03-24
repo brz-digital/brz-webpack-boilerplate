@@ -1,40 +1,56 @@
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 
-const cssnano = require('cssnano');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
+const imageminMozjpeg = require('imagemin-mozjpeg');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 module.exports = merge(common, {
   mode: 'production',
   optimization: {
-    minimize: true,
-  },
-  module: {
-    rules: [
-      {
-        test: /\.s(a|c)ss$/,
-        use: [
-          { loader: MiniCssExtractPlugin.loader, },
-          { loader: 'css-loader' },
-          { loader: 'postcss-loader' },
-          { loader: 'sass-loader' },
-        ],
-      }
+    minimizer: [
+      new TerserPlugin({
+        test: /\.js(\?.*)?$/i,
+        parallel: true,
+        sourceMap: true,
+      })
     ],
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-      chunkFilename: '[id].css',
+    new CleanWebpackPlugin(),
+    new CompressionPlugin({
+      test: /\.(css|js)(\?.*)?$/i
     }),
-    new OptimizeCssAssetsPlugin({
-      assetNameRegExp: /\.css$/g,
-      cssProcessor: cssnano,
-      cssProcessorOptions: { discardComments: { removeAll: true } },
-      canPrint: true,
+    new FaviconsWebpackPlugin({
+      logo: './src/static/images/favicon.svg',
+      prefix: './favicons/',
+      icons: {
+        android: true,
+        appleIcon: true,
+        appleStartup: true,
+        coast: false,
+        favicons: true,
+        firefox: false,
+        opengraph: false,
+        twitter: false,
+        yandex: false,
+        windows: true
+      }
     }),
+    new ImageminPlugin({
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      gifsicle: {
+        optimizationLevel: 9
+      },
+      pngquant: ({
+        quality: '75'
+      }),
+      plugins: [imageminMozjpeg({
+        quality: '75'
+      })]
+    })
   ],
 })

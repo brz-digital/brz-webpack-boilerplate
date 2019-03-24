@@ -10,6 +10,10 @@ node_modules/
 yarn.lock
 package-lock.json
 
+# OS files
+.DS_Store
+.idea
+
 # Project
 dist/
 

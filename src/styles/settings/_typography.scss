@@ -1,0 +1,11 @@
+/* Typography */
+$iconfont: 'icons';
+
+/* Icons */
+@include font-face(
+  $iconfont,
+  "/fonts/icons/#{$iconfont}",
+  normal,
+  normal,
+  eot woff ttf svg
+);

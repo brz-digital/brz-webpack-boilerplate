@@ -1,5 +1,22 @@
 {
   "dependencies": [
-    "jquery"
+    "./node_modules/jquery/dist/jquery.js",
+    "./node_modules/popper.js/dist/popper.js",
+    "./node_modules/bootstrap/js/src/alert.js",
+    "./node_modules/bootstrap/js/src/button",
+    "./node_modules/bootstrap/js/src/carousel",
+    "./node_modules/bootstrap/js/src/collapse",
+    "./node_modules/bootstrap/js/src/dropdown",
+    "./node_modules/bootstrap/js/src/modal",
+    "./node_modules/bootstrap/js/src/popover",
+    "./node_modules/bootstrap/js/src/scrollspy",
+    "./node_modules/bootstrap/js/src/tab",
+    "./node_modules/bootstrap/js/src/toast",
+    "./node_modules/bootstrap/js/src/tooltip",
+    "./node_modules/bootstrap/js/src/util",
+    "./node_modules/jquery-mask-plugin/dist/jquery.mask.js",
+    "./node_modules/swiper/dist/js/swiper.js",
+    "./node_modules/sweetalert/dist/sweetalert.min.js",
+    "./node_modules/axios/dist/axios.js"
   ]
 }

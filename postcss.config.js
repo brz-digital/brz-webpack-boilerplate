@@ -1,7 +1,20 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+/* postcss.config.js */
+const purgecss = require('@fullhuman/postcss-purgecss');
 const autoprefixer = require('autoprefixer');
+const pxtorem = require('postcss-pxtorem');
 const cssnano = require('cssnano');
 
 module.exports = {
-  plugins: [autoprefixer, cssnano],
+  plugins: [
+    autoprefixer,
+    pxtorem({
+      propList: ['*'],
+    }),
+    cssnano
+  ],
 };
+
+
+
+
+

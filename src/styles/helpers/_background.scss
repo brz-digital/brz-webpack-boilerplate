@@ -1,0 +1,17 @@
+/* Background */
+.bg {
+  &-cover,
+  &-cover-before:before,
+  &-cover-after:after {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  &-contain,
+  &-contain-before:before,
+  &-contain-after:after {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}

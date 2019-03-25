@@ -9,18 +9,18 @@
 - Install dependencies: `$ yarn`
 
 ### Running
-- `yarn start`: Run webpack-dev-server 
+`yarn start` Run webpack-dev-server 
 
 ### Build
-- `yarn build`: Build files, compress, optmize and copy all static files (html, images, videos, fonts and favicons) to dist
+`yarn build` Build files, compress, optmize and copy all static files (html, images, videos, fonts and favicons) to dist
 
 ### How to installing frontend dependencies?
-We use yarn or npm to manage our frontend dependencies.
-For example, if you want to install jQuery, you can run `$ yarn add jquery`
+- We use yarn or npm to manage our frontend dependencies. For example, if you want to install jQuery, you can run `$ yarn add jquery`
 
 ### For default, contains
-- jQuery
-- bootstrap 4.3
+- jquery
+- bootstrap
+- include media
 - swiper
 - jquery mask plugin
 - axios

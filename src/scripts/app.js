@@ -1,7 +1,8 @@
+import '../index.html';
 import '../styles/app.scss';
 
-import Send from './send/Send';
-import Slide from './slide/Slide';
+import Send from './send';
+import Slide from './slide';
 
 class App {
   constructor() {

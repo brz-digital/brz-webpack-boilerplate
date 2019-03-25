@@ -1,11 +1,10 @@
 const glob = require('glob');
 const path = require('path');
-const package = require('./package.json');
+const settings = require('./settings.json');
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 const pages = () => glob.sync('./src/**/*.html').map(
   dir => new HTMLWebpackPlugin({
@@ -16,7 +15,7 @@ const pages = () => glob.sync('./src/**/*.html').map(
 
 module.exports = {
   entry: {
-    './scripts/vendors.js': Object.keys(package.dependencies),
+    './scripts/vendors.js': Object.values(settings.dependencies),
     './scripts/scripts.js': ['@babel/polyfill', './src/scripts/app.js'],
   },
   output: {
@@ -32,16 +31,25 @@ module.exports = {
       },
       {
         test: /\.html$/,
-        use: [{ loader: 'raw-loader' }],
+        use: [{ loader: 'html-loader' }],
       },
       {
-        test: /\.s(a|c)ss$/,
-        use: [
-          { loader: MiniCssExtractPlugin.loader, },
-          { loader: 'css-loader', options: { sourceMap: true } },
-          { loader: 'postcss-loader', options: { sourceMap: true } },
-          { loader: 'sass-loader', options: { sourceMap: true } },
-        ],
+        test: /\.(jpe?g|png|gif|svg)$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+          }
+        }]
+      },
+      {
+        test: /\.(woff|woff2|ttf|otf)$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+          },
+        }]
       },
     ]
   },
@@ -53,14 +61,8 @@ module.exports = {
       },
     ]),
     ...pages(),
-    new FixStyleOnlyEntriesPlugin(),
-    new MiniCssExtractPlugin({
-      filename: './styles/app.css',
-      chunkFilename: '[id].css'
-    }),
   ],
   stats: {
     colors: true,
   },
-  devtool: 'source-map',
 }

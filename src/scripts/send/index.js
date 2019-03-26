@@ -1,1 +1,7 @@
-console.log('Send');
+class Send {
+  constructor() {
+
+  }
+}
+
+export default Send;

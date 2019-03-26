@@ -21,7 +21,8 @@ module.exports = merge(common, {
       new TerserPlugin({
         test: /\.js(\?.*)?$/i,
         parallel: true,
-        sourceMap: true,
+        sourceMap: false,
+        extractComments: true,
       })
     ],
   },

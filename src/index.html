@@ -15,6 +15,33 @@
     </div>
   </div>
 
+  <div class="container mb-5">
+    <form action="test.json" class="form">
+      <div class="row">
+        <div class="form-group col-sm-4">
+          <label for="name" class="sr-only">Nome</label>
+          <input type="text" class="form-control" id="name" placeholder="Nome">
+        </div>
+        <div class="form-group col-sm-4">
+          <label for="email" class="sr-only">Email</label>
+          <input type="email" class="form-control" id="email" placeholder="Email">
+        </div>
+        <div class="form-group col-sm-4">
+          <label for="company" class="sr-only">Empresa</label>
+          <input type="text" class="form-control" id="company" placeholder="Empresa">
+        </div>
+        <div class="form-group col-sm-12">
+          <label for="body" class="sr-only">Mensagem</label>
+          <textarea name="body" id="body" rows="5" class="form-control textarea"
+            placeholder="Mensagem"></textarea>
+        </div>
+        <div class="form-actions col-sm-12">
+          <button type="submit" class="btn btn-info text-uppercase js-send">Enviar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
   <div class="container">
     <div class="swiper-container" style="height: 300px; background-color: #e9ecef;">
       <div class="swiper-wrapper">

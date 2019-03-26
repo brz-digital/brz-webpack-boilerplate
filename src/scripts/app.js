@@ -1,6 +1,5 @@
 import '../styles/app.scss';
 
-import Api from './api';
 import Send from './send';
 import Slide from './slide';
 

@@ -8,7 +8,7 @@ const api = axios.create({
 if (token) {
   api.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 } else {
-  console.error('csrf-token not found.');
+  console.warning('csrf-token not found.');
 }
 
 export default api;

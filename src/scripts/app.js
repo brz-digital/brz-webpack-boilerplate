@@ -3,12 +3,14 @@ import '../styles/app.scss';
 import Send from './send';
 import Slide from './slide';
 import Mask from './mask';
+import Share from './share';
 
 class App {
   constructor() {
     new Send();
     new Slide();
     new Mask();
+    new Share();
 
     document.addEventListener('DOMContentLoaded', function(event) {
       console.log('\n%c     ', `font-size: 30px; background: url(${window.location.origin}/images/brz.svg) no-repeat;`);

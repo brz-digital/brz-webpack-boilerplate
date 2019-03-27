@@ -1,4 +1,4 @@
-import dataAppend from '../helpers/data';
+import dataAppend from '../helpers/dataAppend';
 import loading from '../helpers/loading';
 import api from '../api';
 

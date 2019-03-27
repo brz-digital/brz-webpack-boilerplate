@@ -21,7 +21,7 @@ class Slide {
         perViewXS:      slide.dataset.perViewXs                     ||   1,
         spaceBetween:   slide.dataset.spaceBetween                  ||   0,
         effect:         slide.dataset.effect                        ||   'slide', // "slide", "fade", "cube", "coverflow", "flip"
-        pagination:     slide.dataset.pagination                    ||   'bullets' // "bullets", "fraction", "progressbar",
+        pagination:     slide.dataset.pagination                    ||   'bullets', // "bullets", "fraction", "progressbar",
         direction:      slide.dataset.direction                     ||   'horizontal',
       };
 

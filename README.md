@@ -22,6 +22,7 @@
 - bootstrap
 - include media
 - swiper
-- jquery mask plugin
+- imask
 - axios
 - sweetalert
+- google maps

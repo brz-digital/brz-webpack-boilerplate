@@ -54,15 +54,19 @@ module.exports = {
           loader: 'file-loader',
           options: {
             name: '[name].[ext]',
+            outputPath: 'images/',
+            publicPath: 'images/'
           }
         }]
       },
       {
-        test: /\.(woff|woff2|ttf|otf)$/,
+        test: /\.(eot|woff|woff2|svg|ttf)([\?]?.*)$/,
         use: [{
           loader: 'file-loader',
           options: {
             name: '[name].[ext]',
+            outputPath: 'fonts/',
+            publicPath: 'fonts/'
           },
         }]
       },

@@ -1,10 +1,10 @@
-import dataAppend from '../helpers/dataAppend';
-import loading from '../helpers/loading';
-import api from '../api';
+import dataAppend from "../helpers/dataAppend";
+import loading from "../helpers/loading";
+import api from "../api";
 
 class Send {
   constructor() {
-    this.registerHandlers(document.querySelectorAll('.js-send'));
+    this.registerHandlers(document.querySelectorAll(".js-send"));
   }
 
   registerHandlers(buttons) {
@@ -18,12 +18,12 @@ class Send {
 
     loading(event.target);
 
-    let form = event.target.closest('.form');
+    let form = event.target.closest(".form");
     let formData = dataAppend(form);
 
     try {
       const response = await api.post({
-        headers: { 'Content-Type': 'multipart/form-data' },
+        headers: { "Content-Type": "multipart/form-data" },
         url: form.action,
         data: formData
       });
@@ -42,25 +42,25 @@ class Send {
 
     this.removeValidation(form);
 
-    if (typeof reset == 'undefined'){
+    if (typeof reset == "undefined") {
       form.reset();
     }
 
-    if(title || message) {
+    if (title || message) {
       timeout = 3000;
       swal({
-        title:   title    || 'Obrigado',
-        text:    message  || 'Enviado com sucesso!',
-        icon:    'success',
-        timer:   timeout,
+        title: title || "Obrigado",
+        text: message || "Enviado com sucesso!",
+        icon: "success",
+        timer: timeout,
         buttons: false
       });
     } else {
       timeout = 100;
     }
 
-    if(redirect) {
-      setTimeout(function(){
+    if (redirect) {
+      setTimeout(function() {
         window.location.replace(redirect);
       }, timeout);
     }
@@ -74,12 +74,12 @@ class Send {
   addValidation(response, form) {
     let { title, message, data } = response;
 
-    if(title || message) {
+    if (title || message) {
       swal({
-        title:   title    || 'Ops',
-        text:    message  || 'Ocorreu um erro ao enviar, tente novamente.',
-        icon:    'error',
-        timer:   3000,
+        title: title || "Ops",
+        text: message || "Ocorreu um erro ao enviar, tente novamente.",
+        icon: "error",
+        timer: 3000,
         buttons: false
       });
     }
@@ -87,28 +87,29 @@ class Send {
     data.forEach((index, value) => {
       let input = form.querySelector('.js-validate[name="' + index + '"]');
 
-      let group = input.closest('.js-validate-group');
-          input.classList.add('is-invalid');
-          group.classList.add('-wrong');
+      let group = input.closest(".js-validate-group");
+      input.classList.add("is-invalid");
+      group.classList.add("-wrong");
 
-      let messageError = document.createElement('div');
-          messageError.classList.add('invalid-feedback');
-          messageError.innerHTML = data[key];
+      let messageError = document.createElement("div");
+      messageError.classList.add("invalid-feedback");
+      messageError.innerHTML = data[key];
 
       group.appendChild(messageError);
     });
   }
 
   removeValidation(form) {
-    let groups = form.querySelectorAll('.js-validate-group');
+    let groups = form.querySelectorAll(".js-validate-group");
 
-    groups.forEach((group) => {
-      if (group.classList.contains('-wrong')) {
-        group.classList.remove('-wrong');
-        let input = group.querySelector('.js-validate')
-            input.classList.remove('is-invalid');
+    groups.forEach(group => {
+      if (group.classList.contains("-wrong")) {
+        group.classList.remove("-wrong");
+        let input = group.querySelector(".js-validate");
+        input.classList.remove("is-invalid");
       }
-      if (group.querySelector('.invalid-feedback')) group.removeChild(group.querySelector('.invalid-feedback'));
+      if (group.querySelector(".invalid-feedback"))
+        group.removeChild(group.querySelector(".invalid-feedback"));
     });
   }
 }

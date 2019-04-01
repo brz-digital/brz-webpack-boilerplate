@@ -1,132 +1,175 @@
-import extend from './helpers/extend';
-import boolParse from '../helpers/bool';
-
-const normalizeData = data => {
-  return {
-    title:   data.title,
-    address: data.address,
-    lat:     data.lat,
-    lng:     data.lng,
-    image:   data.image
-  };
-}
+import extend from "../helpers/extend";
+import boolParse from "../helpers/bool";
+import api from "../api";
 
 const googleMaps = (elements, options) => {
   return elements.forEach(el => {
+    el.classList.add("map");
+
     let params = {
-      api:               el.dataset.api                 ||   null,
-      zoom:              el.dataset.zoom                ||   21,
-      scroll:            boolParse(el.dataset.scroll)   ||   false,
-      lat:               el.dataset.lat                 ||   null,
-      lng:               el.dataset.lng                 ||   null,
-      title:             el.dataset.title               ||   null,
-      address:           el.dataset.address             ||   null,
-      image:             el.dataset.image               ||   null,
-      icon:              el.dataset.icon                ||   null,
-      defaultPosition:   el.dataset.defaultPosition     ||   '-7.108270,-34.830408',
+      api: el.dataset.api || null,
+      zoom: parseInt(el.dataset.zoom) || 21,
+      scroll: boolParse(el.dataset.scroll) || false,
+      lat: el.dataset.lat || null,
+      lng: el.dataset.lng || null,
+      title: el.dataset.title || null,
+      address: el.dataset.address || null,
+      image: el.dataset.image || null,
+      icon: el.dataset.icon || null,
+      defaultPosition: el.dataset.defaultPosition || "-7.108270,-34.830408"
     };
 
-    let defaultPosition = params.defaultPosition.split(',');
+    let defaultPosition = params.defaultPosition.split(",");
 
-    let settings = extend({
-      scaleControl: false,
-      streetViewControl: false,
-      scrollwheel: params.scroll,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      panControl: false,
-      mapTypeControl: false,
-      center: new google.maps.LatLng(defaultPosition[0], defaultPosition[1]),
-      zoom: params.zoom,
-      zoomControlOptions: {
-        style: google.maps.ZoomControlStyle.SMALL,
-        position: google.maps.ControlPosition.TOP_RIGHT
+    let settings = extend(
+      {
+        fullscreenControl: false,
+        scaleControl: false,
+        streetViewControl: false,
+        scrollwheel: params.scroll,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        panControl: false,
+        mapTypeControl: false,
+        center: new google.maps.LatLng(defaultPosition[0], defaultPosition[1]),
+        zoom: params.zoom,
+        zoomControl: true,
+        zoomControlOptions: {
+          style: google.maps.ZoomControlStyle.SMALL,
+          position: google.maps.ControlPosition.TOP_RIGHT
+        }
       },
-    }, options);
-
+      options
+    );
 
     let map = new google.maps.Map(el, settings);
-    let markerInfo = {};
-    let caption    = null;
-    let openCard   = [];
+    let bounds = new google.maps.LatLngBounds();
+    let openCard = [];
 
     if (params.api === null) {
-      caption = normalizeData(params);
+      if (params.lat !== null && params.lng !== null) {
+        let location = normalizeData(params);
+        pushToMap(map, bounds, params, location, openCard);
+      }
     } else {
-
+      fetchLocations(params.api, map, bounds, params, openCard);
     }
   });
 };
 
+const normalizeData = data => {
+  return {
+    title: data.title || null,
+    address: data.address || null,
+    lat: data.lat || null,
+    lng: data.lng || null,
+    image: data.image || null,
+    icon: data.icon || null
+  };
+};
+
+const fetchLocations = async (endpoint, map, bounds, params, openCard) => {
+  try {
+    const response = await api.get(endpoint);
+
+    response.data.locations.forEach(data => {
+      let location = normalizeData(data);
+      pushToMap(map, bounds, params, location, openCard);
+    });
+  } catch (err) {
+    console.error("Error on loading locations.");
+  }
+};
+
+const pushToMap = (map, bounds, params, location, openCard) => {
+  let data = {};
+  let icon = location.icon;
+
+  if (icon === null) {
+    icon = params.icon;
+  }
+
+  if (icon !== null) {
+    data["icon"] = new google.maps.Marker({
+      url: icon,
+      size: new google.maps.Size(32, 32),
+      origin: new google.maps.Point(0, 0),
+      anchor: new google.maps.Point(17, 34),
+      scaledSize: new google.maps.Size(25, 25)
+    });
+  }
+
+  data["position"] = new google.maps.LatLng(location.lat, location.lng);
+  data["content"] = createCard(location);
+
+  let markerSettings = extend(
+    {
+      map: map
+    },
+    data
+  );
+
+  let marker = new google.maps.Marker(markerSettings);
+
+  bounds.extend(data["position"]);
+  map.panToBounds(bounds);
+
+  handleOnClick(map, bounds, marker, data["content"], openCard);
+};
+
+const createCard = location => {
+  let card = document.createElement("div");
+  card.setAttribute("class", "map-card");
+
+  if (location.image !== null) {
+    card.classList.add("-with-image");
+    let figure = document.createElement("div");
+    figure.setAttribute("class", "map-figure");
+
+    let image = document.createElement("div");
+    image.setAttribute("class", "map-image bg-cover");
+    image.style.backgroundImage = `url(${location.image})`;
+
+    figure.appendChild(image);
+    card.appendChild(figure);
+  }
+
+  let caption = document.createElement("div");
+  caption.setAttribute("class", "map-caption");
+
+  if (location.title) {
+    let title = document.createElement("h4");
+    title.setAttribute("class", "map-title");
+    title.appendChild(document.createTextNode(location.title));
+    caption.appendChild(title);
+  }
+
+  if (location.address) {
+    let address = document.createElement("p");
+    address.setAttribute("class", "map-address");
+    address.appendChild(document.createTextNode(location.address));
+    caption.appendChild(address);
+  }
+
+  card.appendChild(caption);
+
+  return card;
+};
+
+const handleOnClick = (map, bounds, marker, data, openCard) => {
+  let infoWindow = new google.maps.InfoWindow({
+    content: data
+  });
+
+  marker.addListener("click", () => {
+    if (openCard[0]) {
+      openCard[0].close();
+      openCard.pop();
+    }
+
+    infoWindow.open(map, marker);
+    openCard.push(infoWindow);
+    // map.panToBounds(bounds);
+  });
+};
+
 export default googleMaps;
-
-
-
-    // // If not exists api endpoint
-    // if(typeof params.api === 'undefined') {
-    //   caption = normalizeData(params);
-
-    //   // Set marker in map
-    //   pushToMap(map, params, caption);
-    // } else {
-    //   $.getJSON(params.api, function(resp) {
-    //     $.each(resp.data, function (index, result) {
-    //       caption = normalizeData(result);
-
-    //       // Set marker in map
-    //       pushToMap(map, params, caption);
-    //     });
-    //   });
-    // }
-
-    // function pushToMap(map, params, caption) {
-    //   if(typeof params.marker !== 'undefined') {
-    //     markerInfo['icon'] = new google.maps.MarkerImage(
-    //       params.marker,
-    //       null,
-    //       null,
-    //       null,
-    //       new google.maps.Size(32, 32)
-    //     );
-    //   }
-
-    //   markerInfo['position'] = new google.maps.LatLng(caption.lat, caption.lng);
-    //   markerInfo['content'] = setCard(caption);
-
-    //   var markerSettings = $.extend({
-    //     map: map
-    //   }, markerInfo);
-
-    //   var marker = new google.maps.Marker(markerSettings);
-
-    //   markerClick(marker, markerInfo['content']);
-    // }
-
-    // function markerClick(marker, content) {
-    //   var infoCard = new google.maps.InfoWindow({
-    //     content: content
-    //   });
-
-    //   google.maps.event.addListener(marker, 'click', function() {
-    //     if (typeof openCard[0] !== 'undefined')
-    //       openCard[0].close();
-    //       openCard.pop();
-
-    //       infoCard.open(map, marker);
-    //       openCard.push(infoCard);
-    //   });
-    // }
-
-    // function setCard(data) {
-    //   var card;
-
-    //   if(data.image !== null) {
-    //     card = '<div class="map-card -with-image"><div class="map-figure"><div class="map-image bg-cover" style="background-image: url('+ caption.image +')"></div>';
-    //   } else {
-    //     card = '<div class="map-card">';
-    //   }
-
-    //   card += '<div class="map-caption"><span class="map-title">' + data.title + '</span><span class="map-address">' + data.address + '</span></div></div>';
-
-    //   return card;
-    // }
-

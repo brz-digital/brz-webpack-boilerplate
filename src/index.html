@@ -1,58 +1,129 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="csrf-token" content="dasd12">
-  <title>BRZ Webpack Boilerplate</title>
-</head>
-<body>
-  <div class="jumbotron">
-    <div class="container">
-      <h1 class="display-3">Hello, BRZ!</h1>
-      <p><a class="btn btn-info btn-sm" href="https://github.com/brz-digital/brz-webpack-boilerplate" target="_blank" role="button">Github</a></p>
-    </div>
-  </div>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="csrf-token" content="dasd12" />
+    <title>BRZ Webpack Boilerplate</title>
+  </head>
+  <body>
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-3">Hello, BRZ!</h1>
+        <p class="mb-5">
+          <a
+            class="btn btn-info btn-sm"
+            href="https://github.com/brz-digital/brz-webpack-boilerplate"
+            target="_blank"
+            role="button"
+            >Github</a
+          >
+        </p>
 
-  <div class="container mb-5">
-    <form action="test.json" class="form">
+        <span class="icon-facebook-before"></span>
+        <span class="icon-instagram-before"></span>
+        <span class="icon-twitter-before"></span>
+        <span class="icon-google-before"></span>
+        <span class="icon-linkedin-before"></span>
+        <span class="icon-whatsapp-before"></span>
+        <span class="icon-youtube-before"></span>
+      </div>
+    </div>
+
+    <div class="container mb-5">
+      <form action="test.json" class="form">
+        <div class="row">
+          <div class="form-group col-sm-4">
+            <label for="name" class="sr-only">Nome</label>
+            <input
+              type="text"
+              class="form-control js-mask-money"
+              id="name"
+              placeholder="Nome"
+            />
+          </div>
+          <div class="form-group col-sm-4">
+            <label for="email" class="sr-only">Email</label>
+            <input
+              type="text"
+              class="form-control js-mask-phone"
+              id="email"
+              placeholder="Email"
+            />
+          </div>
+          <div class="form-group col-sm-4">
+            <label for="company" class="sr-only">Empresa</label>
+            <input
+              type="text"
+              class="form-control"
+              id="company"
+              placeholder="Empresa"
+            />
+          </div>
+          <div class="form-group col-sm-12">
+            <label for="body" class="sr-only">Mensagem</label>
+            <textarea
+              name="body"
+              id="body"
+              rows="5"
+              class="form-control textarea"
+              placeholder="Mensagem"
+            ></textarea>
+          </div>
+          <div class="form-actions col-sm-12">
+            <button type="submit" class="btn btn-info text-uppercase js-send">
+              Enviar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="container mb-5">
       <div class="row">
-        <div class="form-group col-sm-4">
-          <label for="name" class="sr-only">Nome</label>
-          <input type="text" class="form-control js-mask-money" id="name" placeholder="Nome">
-        </div>
-        <div class="form-group col-sm-4">
-          <label for="email" class="sr-only">Email</label>
-          <input type="text" class="form-control js-mask-phone" id="email" placeholder="Email">
-        </div>
-        <div class="form-group col-sm-4">
-          <label for="company" class="sr-only">Empresa</label>
-          <input type="text" class="form-control" id="company" placeholder="Empresa">
-        </div>
-        <div class="form-group col-sm-12">
-          <label for="body" class="sr-only">Mensagem</label>
-          <textarea name="body" id="body" rows="5" class="form-control textarea"
-            placeholder="Mensagem"></textarea>
-        </div>
-        <div class="form-actions col-sm-12">
-          <button type="submit" class="btn btn-info text-uppercase js-send">Enviar</button>
+        <div class="col-sm-12">
+          <div class="js-slide slide overflow-hidden" data-autoplay="true">
+            <div class="slide__wrapper">
+              <div class="slide__item">
+                <div style="background-color: blue; height: 300px;">
+                  Slide 1
+                </div>
+              </div>
+              <div class="slide__item">
+                <div style="background-color: red; height: 300px;">Slide 2</div>
+              </div>
+              <div class="slide__item">
+                <div style="background-color: green; height: 300px;">
+                  Slide 3
+                </div>
+              </div>
+            </div>
+            <div class="slide__pagination"></div>
+            <div class="slide__prev"></div>
+            <div class="slide__next"></div>
+          </div>
         </div>
       </div>
-    </form>
-  </div>
-
-  <div class="container mb-5">
-    <div class="js-slide slide" data-autoplay="true" style="height: 300px;">
-      <div class="slide--wrapper">
-        <div class="slide--item swiper-slide" style="background-color: blue;">Slide 1</div>
-        <div class="slide--item swiper-slide" style="background-color: red;">Slide 2</div>
-        <div class="slide--item swiper-slide" style="background-color: green;">Slide 3</div>
-      </div>
-      <div class="slide--pagination swiper-pagination"></div>
-      <div class="slide--prev swiper-button-prev"></div>
-      <div class="slide--next swiper-button-next"></div>
     </div>
-  </div>
-</body>
+
+    <div class="container mb-5">
+      <!--
+      use api example or define unique params
+      data-lat="-7.108270"
+      data-lng="-34.830408"
+      data-title="BRZ Digital"
+      data-address="Av. Bananeiras, 381"
+      -->
+      <div
+        class="js-google-map"
+        data-zoom="15"
+        data-api="http://localhost:9000/locations.json"
+        data-icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/parking_lot_maps.png"
+      ></div>
+    </div>
+  </body>
 </html>

@@ -3,15 +3,15 @@
   &-cover,
   &-cover-before:before,
   &-cover-after:after {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
   }
   &-contain,
   &-contain-before:before,
   &-contain-after:after {
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
   }
 }

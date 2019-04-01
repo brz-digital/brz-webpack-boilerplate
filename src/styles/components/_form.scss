@@ -1,2 +1,6 @@
 /* Form */
-.form {}
+.form {
+  textarea {
+    resize: none;
+  }
+}

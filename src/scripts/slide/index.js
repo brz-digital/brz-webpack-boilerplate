@@ -27,9 +27,9 @@ class Slide {
 
       slide.classList.add(`slide-${index}`);
 
-      if (slide.querySelector('.slide--pagination')) slide.querySelector('.slide--pagination').classList.add(`pagination-${index}`);
-      if (slide.querySelector('.slide--prev')) slide.querySelector('.slide--prev').classList.add(`prev-${index}`);
-      if (slide.querySelector('.slide--next')) slide.querySelector('.slide--next').classList.add(`next-${index}`);
+      if (slide.querySelector('.slide__pagination')) slide.querySelector('.slide__pagination').classList.add(`pagination-${index}`);
+      if (slide.querySelector('.slide__prev')) slide.querySelector('.slide__prev').classList.add(`prev-${index}`);
+      if (slide.querySelector('.slide__next')) slide.querySelector('.slide__next').classList.add(`next-${index}`);
 
       if (settings.onlyMobile === true) {
         slide.classList.add('swiper-only-mobile');
@@ -47,9 +47,9 @@ class Slide {
 
   create(slide, index, settings) {
     slide.classList.add('swiper');
-    slide.querySelector('.slide--wrapper').classList.add('swiper-wrapper');
+    slide.querySelector('.slide__wrapper').classList.add('swiper-wrapper');
 
-    slide.querySelectorAll('.slide--item').forEach((item, index) => {
+    slide.querySelectorAll('.slide__item').forEach((item, index) => {
       item.classList.add('swiper-slide');
     });
 
@@ -100,8 +100,8 @@ class Slide {
       } else if (window.outerWidth >= settings.mobileBreak + 1) {
         slide.classList.remove('swiper');
 
-        if (slide.querySelector('.slide--wrapper')) slide.querySelector('.slide--wrapper').classList.removeClass('swiper-wrapper');
-        if (slide.querySelector('.slide--item')) slide.querySelector('.slide--item').classList.add('swiper-slide');
+        if (slide.querySelector('.slide__wrapper')) slide.querySelector('.slide__wrapper').classList.removeClass('swiper-wrapper');
+        if (slide.querySelector('.slide__item')) slide.querySelector('.slide__item').classList.add('swiper-slide');
 
         if (this.slides[index]) {
           this.slides[index].destroy(false, true);

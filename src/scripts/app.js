@@ -1,9 +1,10 @@
-import '../styles/app.scss';
+import "../styles/app.scss";
 
-import Send from './send';
-import Slide from './slide';
-import Mask from './mask';
-import Share from './share';
+import Send from "./send";
+import Slide from "./slide";
+import Mask from "./mask";
+import Share from "./share";
+import Map from "./map";
 
 class App {
   constructor() {
@@ -11,10 +12,19 @@ class App {
     new Slide();
     new Mask();
     new Share();
+    new Map();
 
-    document.addEventListener('DOMContentLoaded', function(event) {
-      console.log('\n%c     ', `font-size: 30px; background: url(${window.location.origin}/images/brz.svg) no-repeat;`);
-      console.log("%cWe love to inspect codes too \ud83d\udc40\ud83d\ude42", "font-size: 16px; color: #a7bf34");
+    document.addEventListener("DOMContentLoaded", function(event) {
+      console.log(
+        "\n%c     ",
+        `font-size: 30px; background: url(${
+          window.location.origin
+        }/images/brz.svg) no-repeat;`
+      );
+      console.log(
+        "%cWe love to inspect codes too \ud83d\udc40\ud83d\ude42",
+        "font-size: 16px; color: #a7bf34"
+      );
     });
   }
 }

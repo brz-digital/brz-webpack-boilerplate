@@ -5,7 +5,7 @@ import styles from "./googleMapsStyle";
 class Map {
   constructor() {
     loadGoogleMapsApi({
-      key: "AIzaSyDoRN5VSDPYUXTNu1Lflg6Bmqd8GY2MJQ0"
+      key: "PUT-YOR-KEY"
     })
       .then(function(google) {
         new googleMaps(document.querySelectorAll(".js-google-map"), {

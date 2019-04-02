@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/brz-digital/brz-starter/develop/src/images/brz.png" width="80" height="60" />
+<img src="https://raw.githubusercontent.com/brz-digital/brz-webpack-boilerplate/tree/develop/src/static/images/brz.png" width="80" height="60" />
 
 > # BRZ Webpack Starter
 >

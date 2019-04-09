@@ -8,11 +8,11 @@ class Slide {
     document.querySelectorAll('.js-slide').forEach((slide, index) => {
       let settings = {
         mobileBreak:    slide.dataset.mobileBreak                   ||   991,
-        onlyMobile:     boolParse(slide.dataset.onlyMobile)         ||   false,
-        simulateTouch:  boolParse(slide.dataset.simulateTouch)      ||   true,
-        autoplay:       boolParse(slide.dataset.autoplay)           ||   false,
-        loop:           boolParse(slide.dataset.loop)               ||   false,
-        autoHeight:     boolParse(slide.dataset.autoheight)         ||   false,
+        onlyMobile:     slide.hasAttribute("data-only-mobile")      ?    boolParse(slide.dataset.onlyMobile) : false,
+        simulateTouch:  slide.hasAttribute("data-simulate-touch")   ?    boolParse(slide.dataset.simulateTouch) : true,
+        autoplay:       slide.hasAttribute("data-autoplay")         ?    boolParse(slide.dataset.autoplay) : false,
+        loop:           slide.hasAttribute("data-loop")             ?    boolParse(slide.dataset.loop) : false,
+        autoHeight:     slide.hasAttribute("data-auto-height")      ?    boolParse(slide.dataset.autoHeight) : false,
         perView:        slide.dataset.perView                       ||   1,
         perViewXL:      slide.dataset.perViewXl                     ||   1,
         perViewLG:      slide.dataset.perViewLg                     ||   1,

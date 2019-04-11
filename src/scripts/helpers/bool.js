@@ -1,5 +1,5 @@
-const boolParse = (val) => {
-  return /^true$/i.test(val);
-};
+const boolParse = val => {
+  return /^true$/i.test(val)
+}
 
-export default boolParse;
+export default boolParse

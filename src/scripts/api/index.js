@@ -1,14 +1,14 @@
-import axios from 'axios';
+import axios from 'axios'
 
-const token = document.head.querySelector('meta[name="csrf-token"]');
+const token = document.head.querySelector('meta[name="csrf-token"]')
 const api = axios.create({
   baseURL: 'https://api.github.com'
-});
+})
 
 if (token) {
-  api.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+  api.defaults.headers.common['X-CSRF-TOKEN'] = token.content
 } else {
-  console.warning('csrf-token not found.');
+  console.warning('csrf-token not found.')
 }
 
-export default api;
+export default api

@@ -1,25 +1,31 @@
-const glob = require('glob');
-const path = require('path');
-const webpack = require('webpack');
+const glob = require('glob')
+const path = require('path')
+const webpack = require('webpack')
 
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const HTMLWebpackPlugin = require('html-webpack-plugin')
 
-const pages = () => glob.sync('./src/**/*.html').map(
-  dir => new HTMLWebpackPlugin({
-    template: dir,
-    filename: path.basename(dir)
-  }),
-);
+const pages = () =>
+  glob.sync('./src/**/*.html').map(
+    dir =>
+      new HTMLWebpackPlugin({
+        template: dir,
+        filename: path.basename(dir)
+      })
+  )
 
 module.exports = {
   entry: {
-    './scripts/app' : ['@babel/polyfill', './src/scripts/vendors.js', './src/scripts/app.js']
+    './scripts/app': [
+      '@babel/polyfill',
+      './src/scripts/vendors.js',
+      './src/scripts/app.js'
+    ]
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
-    chunkFilename: '[name].js',
+    chunkFilename: '[name].js'
   },
   stats: {
     colors: true
@@ -29,7 +35,7 @@ module.exports = {
       cacheGroups: {
         vendor: {
           test: /node_modules/,
-          chunks: "initial",
+          chunks: 'initial',
           name: './scripts/vendors',
           priority: 10,
           enforce: true
@@ -42,43 +48,50 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: [{ loader: 'babel-loader' }],
+        use: [{ loader: 'babel-loader' }]
       },
       {
         test: /\.html$/,
-        use: [{ loader: 'html-loader' }],
+        use: [{ loader: 'html-loader' }]
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-            outputPath: 'images/',
-            publicPath: 'images/'
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'images/',
+              publicPath: 'images/'
+            }
           }
-        }]
+        ]
       },
       {
         test: /\.(eot|woff|woff2|svg|ttf)([\?]?.*)$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-            outputPath: 'fonts/',
-            publicPath: 'fonts/'
-          },
-        }]
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'fonts/',
+              publicPath: 'fonts/'
+            }
+          }
+        ]
       },
       {
         test: require.resolve('jquery'),
-        use: [{
-          loader: 'expose-loader',
-          options: 'jQuery'
-        },{
-          loader: 'expose-loader',
-          options: '$'
-        }]
+        use: [
+          {
+            loader: 'expose-loader',
+            options: 'jQuery'
+          },
+          {
+            loader: 'expose-loader',
+            options: '$'
+          }
+        ]
       }
     ]
   },
@@ -91,9 +104,9 @@ module.exports = {
     new CopyWebpackPlugin([
       {
         from: './src/static/',
-        to: './',
-      },
+        to: './'
+      }
     ]),
-    ...pages(),
-  ],
+    ...pages()
+  ]
 }

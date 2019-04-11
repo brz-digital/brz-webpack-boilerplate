@@ -78,14 +78,15 @@ Add js-send in submit form button and add js-validate in all inputs need validat
 ### How to use maps?
 
 - See all features in [/src/scripts/map/googlemaps.js](https://github.com/brz-digital/brz-webpack-boilerplate/blob/develop/src/scripts/map/googlemaps.js)
+- To use it is necessary to generate a key in [google cloud console](https://console.cloud.google.com)
 
-- Unique place
+* For unique place
 
 ```
 <div class="js-google-map" data-zoom="15" data-lat="-7.108270" data-lng="-34.830408" data-title="BRZ Digital" data-address="Av. Bananeiras, 381" data-icon="./images/brz.svg"></div>
 ```
 
-- Multiple places
+- For multiple places
 
 ```
 <div class="js-google-map" data-zoom="15" data-api="http://localhost:9000/locations.json" data-icon="./images/brz.svg"></div>

@@ -9,7 +9,8 @@ const googleMaps = (elements, options) => {
     let params = {
       api: el.dataset.api || null,
       zoom: parseInt(el.dataset.zoom) || 21,
-      scroll: boolParse(el.dataset.scroll) || false,
+      zoomControl: el.hasAttribute("data-zoom-control") ? boolParse(slide.dataset.zoomControl) : false,
+      scroll: el.hasAttribute("data-scroll") ? boolParse(slide.dataset.onlyMobile) : false,
       lat: el.dataset.lat || null,
       lng: el.dataset.lng || null,
       title: el.dataset.title || null,
@@ -32,7 +33,7 @@ const googleMaps = (elements, options) => {
         mapTypeControl: false,
         center: new google.maps.LatLng(defaultPosition[0], defaultPosition[1]),
         zoom: params.zoom,
-        zoomControl: true,
+        zoomControl: params.zoomControl,
         zoomControlOptions: {
           style: google.maps.ZoomControlStyle.SMALL,
           position: google.maps.ControlPosition.TOP_RIGHT

@@ -1,15 +1,16 @@
 /* Background */
 .bg {
   &-cover,
-  &-cover-before:before,
-  &-cover-after:after {
+  &-cover-before::before,
+  &-cover-after::after {
     background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
   }
+
   &-contain,
-  &-contain-before:before,
-  &-contain-after:after {
+  &-contain-before::before,
+  &-contain-after::after {
     background-size: contain !important;
     background-position: center !important;
     background-repeat: no-repeat !important;

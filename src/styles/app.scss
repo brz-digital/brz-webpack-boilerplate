@@ -1,12 +1,9 @@
-/* Tools */
+/* Imports */
 @import "./tools/index";
-/* Settings */
 @import "./settings/index";
-/* Vendors */
 @import "./vendors/index";
-/* Objects */
+@import "./generic/index";
+@import "./base/index";
 @import "./objects/index";
-/* Components */
 @import "./components/index";
-/* Helpers */
 @import "./helpers/index";

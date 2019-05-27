@@ -6,23 +6,28 @@
 
   .map-card {
     .map-caption {
+      padding: 10px;
       width: 280px;
-      padding: 15px;
     }
+
     .map-image {
       width: 80px;
       height: 80px;
       float: left;
+      margin-right: 10px;
     }
+
     .map-title {
       font-size: 16px;
+      letter-spacing: 1px;
       font-weight: 700;
       display: block;
       margin-bottom: 10px;
     }
+
     .map-address {
-      font-weight: 700;
       display: block;
+      margin-bottom: 0 !important;
     }
   }
 }

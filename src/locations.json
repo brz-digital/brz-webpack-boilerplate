@@ -6,8 +6,7 @@
       "address": "Av. Bananeiras, 381",
       "lat": -7.10827,
       "lng": -34.830408,
-      "image": "http://localhost:9000/images/favicon.svg",
-      "icon": "https://developers.google.com/maps/documentation/javascript/examples/full/images/info-i_maps.png"
+      "image": "http://localhost:8000/images/favicon.svg"
     }
   ]
 }

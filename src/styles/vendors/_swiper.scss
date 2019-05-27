@@ -1,6 +1,6 @@
 @import "~swiper/src/scss/functions";
 
 $themeColor: #007aff !default;
-$colors: (white: #ffffff, black: #000000) !default;
+$colors: (white: $color10, black: $color20) !default;
 
 @import "~swiper/src/components/core/core";

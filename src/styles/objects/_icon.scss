@@ -5,7 +5,8 @@
 
 [class^="icon"],
 [class*=" icon"] {
-  &:before, &:after {
+  &::before,
+  &::after {
     font-family: $iconfont !important;
     font-style: normal !important;
     font-weight: normal !important;
@@ -21,7 +22,8 @@
 .icon {
   @each $key, $value in $icons {
     &-#{$key} {
-      &-after:after, &-before:before {
+      &-after::after,
+      &-before::before {
         content: $value;
       }
     }

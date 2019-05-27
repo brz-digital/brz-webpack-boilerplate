@@ -1,11 +1,9 @@
-const checkType = element => {
-  return element.getAttribute('type')
-}
+const checkType = element => element.getAttribute('type')
 
 const dataAppend = form => {
-  let formData = new FormData()
+  const formData = new FormData()
 
-  for (let i = 0; i < form.length; ++i) {
+  for (let i = 0; i < form.length; i += 1) {
     switch (checkType(form[i])) {
       case 'checkbox':
       case 'radio':

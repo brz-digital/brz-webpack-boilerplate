@@ -1,24 +1,34 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Project
+dist/*
 
 # Node
-node_modules/
+node_modules
+npm-debug.log
 yarn.lock
 package-lock.json
+logs
+lib-cov
 
-# OS files
+# Sass
+.sass-cache
+
+# OS X
 .DS_Store
-.idea
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+._*
+Icon
 
-# Project
-dist/
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
 
-# Optional eslint cache
+# Eslint
 .eslintcache
 
-# Environment file
-.env
+# Apps
+.idea

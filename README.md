@@ -61,17 +61,17 @@ Add js-send in submit form button and add js-validate in all inputs need validat
 
 ```
 <div class="js-slide slide" data-autoplay="true">
-  <div class="slide__wrapper">
-    <div class="slide__item">
+  <div class="slide-wrapper">
+    <div class="slide-item">
       <div style="background-color: blue; height: 300px;">Slide 1</div>
     </div>
-    <div class="slide__item">
+    <div class="slide-item">
       <div style="background-color: red; height: 300px;">Slide 2</div>
     </div>
   </div>
-  <div class="slide__pagination"></div>
-  <div class="slide__prev"></div>
-  <div class="slide__next"></div>
+  <div class="slide-pagination"></div>
+  <div class="slide-prev"></div>
+  <div class="slide-next"></div>
 </div>
 ```
 

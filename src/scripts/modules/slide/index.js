@@ -37,16 +37,16 @@ class Slide {
 
       slide.classList.add(`slide-${index}`)
 
-      if (slide.querySelector('.slide__pagination')) {
+      if (slide.querySelector('.slide-pagination')) {
         slide
-          .querySelector('.slide__pagination')
+          .querySelector('.slide-pagination')
           .classList.add(`pagination-${index}`)
       }
-      if (slide.querySelector('.slide__prev')) {
-        slide.querySelector('.slide__prev').classList.add(`prev-${index}`)
+      if (slide.querySelector('.slide-prev')) {
+        slide.querySelector('.slide-prev').classList.add(`prev-${index}`)
       }
-      if (slide.querySelector('.slide__next')) {
-        slide.querySelector('.slide__next').classList.add(`next-${index}`)
+      if (slide.querySelector('.slide-next')) {
+        slide.querySelector('.slide-next').classList.add(`next-${index}`)
       }
 
       if (settings.onlyMobile === true) {
@@ -65,9 +65,9 @@ class Slide {
 
   create (slide, index, settings) {
     slide.classList.add('swiper')
-    slide.querySelector('.slide__wrapper').classList.add('swiper-wrapper')
+    slide.querySelector('.slide-wrapper').classList.add('swiper-wrapper')
 
-    slide.querySelectorAll('.slide__item').forEach(item => {
+    slide.querySelectorAll('.slide-item').forEach(item => {
       item.classList.add('swiper-slide')
     })
 
@@ -118,13 +118,13 @@ class Slide {
       } else if (window.innerWidth >= settings.mobileBreak + 1) {
         slide.classList.remove('swiper')
 
-        const wrapper = slide.querySelector('.slide__wrapper')
+        const wrapper = slide.querySelector('.slide-wrapper')
 
         if (wrapper.classList.contains('swiper-wrapper')) {
           wrapper.classList.remove('swiper-wrapper')
         }
 
-        const items = slide.querySelectorAll('.slide__item')
+        const items = slide.querySelectorAll('.slide-item')
 
         items.forEach(item => {
           if (item.classList.contains('swiper-slide')) {

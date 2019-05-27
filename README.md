@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/brz-digital/brz-webpack-boilerplate/develop/src/static/images/brz.png" width="80" height="60" />
+<img src="https://raw.githubusercontent.com/brz-digital/brz-webpack-boilerplate/develop/src/images/brz.png" width="80" height="60" />
 
 > # BRZ Webpack Starter
 >
@@ -89,5 +89,5 @@ Add js-send in submit form button and add js-validate in all inputs need validat
 - For multiple places
 
 ```
-<div class="js-google-map" data-zoom="15" data-api="http://localhost:9000/locations.json" data-icon="./images/brz.svg"></div>
+<div class="js-google-map" data-zoom="15" data-api="http://localhost:8000/locations.json" data-icon="./images/brz.svg"></div>
 ```

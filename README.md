@@ -53,11 +53,11 @@ Add js-send in submit form button and add js-validate in all inputs need validat
 
 ### How to use mask?
 
-- See all mask types in [/src/scripts/mask/index.js](https://github.com/brz-digital/brz-webpack-boilerplate/blob/develop/src/scripts/mask/index.js)
+- See all mask types in [/src/scripts/mask/index.js](https://github.com/brz-digital/brz-webpack-boilerplate/blob/develop/src/scripts/modules/mask/index.js)
 
 ### How to use swiper?
 
-- See all features in [/src/scripts/slide/index.js](https://github.com/brz-digital/brz-webpack-boilerplate/blob/develop/src/scripts/slide/index.js)
+- See all features in [/src/scripts/slide/index.js](https://github.com/brz-digital/brz-webpack-boilerplate/blob/develop/src/scripts/modules/slide/index.js)
 
 ```
 <div class="js-slide slide" data-autoplay="true">
@@ -77,7 +77,7 @@ Add js-send in submit form button and add js-validate in all inputs need validat
 
 ### How to use maps?
 
-- See all features in [/src/scripts/map/googlemaps.js](https://github.com/brz-digital/brz-webpack-boilerplate/blob/develop/src/scripts/map/googlemaps.js)
+- See all features in [/src/scripts/map/googlemaps.js](https://github.com/brz-digital/brz-webpack-boilerplate/blob/develop/src/scripts/modules/map/googleMaps.js)
 - To use it is necessary to generate a key in [google cloud console](https://console.cloud.google.com)
 
 * For unique place

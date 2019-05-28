@@ -1,114 +1,113 @@
-import axios from 'axios'
-import swal from 'sweetalert'
-import dataAppend from '../../helpers/dataAppend'
-import loading from '../../helpers/loading'
+import axios from "axios";
+import swal from "sweetalert";
+import dataAppend from "../../helpers/dataAppend";
+import loading from "../../helpers/loading";
 
 const addValidation = (response, form) => {
-  const { title, message, data } = response
+  const { title, message, data } = response;
 
   if (title || message) {
     swal({
-      title: title || 'Ops',
-      text: message || 'Ocorreu um erro ao enviar, tente novamente.',
-      icon: 'error',
+      title: title || "Ops",
+      text: message || "Ocorreu um erro ao enviar, tente novamente.",
+      icon: "error",
       timer: 3000,
       buttons: false
-    })
+    });
   }
 
   data.forEach((index, key) => {
-    const input = form.querySelector(`.js-validate[name="${index}"]`)
+    let input = form.querySelector(`[name="${index}"]`);
 
-    const group = input.closest('.js-validate-group')
-    input.classList.add('is-invalid')
-    group.classList.add('-wrong')
+    if (input) {
+      let group = input.closest(".js-validate-group");
+      if (!group.classList.contains("is-invalid"))
+        group.classList.add("is-invalid");
 
-    const messageError = document.createElement('div')
-    messageError.classList.add('invalid-feedback')
-    messageError.innerHTML = data[key]
+      let feedback = document.createElement("div");
+      feedback.classList.add("invalid-feedback");
+      feedback.appendChild(document.createTextNode(data[index]));
 
-    group.appendChild(messageError)
-  })
-}
+      if (!group.querySelector(".invalid-feedback"))
+        group.appendChild(feedback);
+    }
+  });
+};
 
 const removeValidation = form => {
-  const groups = form.querySelectorAll('.js-validate-group')
+  let groups = form.querySelectorAll(".js-validate-group");
 
   groups.forEach(group => {
-    if (group.classList.contains('-wrong')) {
-      group.classList.remove('-wrong')
-      const input = group.querySelector('.js-validate')
-      input.classList.remove('is-invalid')
-    }
-    if (group.querySelector('.invalid-feedback')) {
-      group.removeChild(group.querySelector('.invalid-feedback'))
-    }
-  })
-}
+    if (group.classList.contains("is-invalid"))
+      group.classList.remove("is-invalid");
+    if (group.querySelector(".invalid-feedback"))
+      group.removeChild(group.querySelector(".invalid-feedback"));
+  });
+};
 
 const handleSuccess = (response, form) => {
-  let timeout = 0
-  const { reset, title, message, redirect } = response
+  let timeout = 0;
+  const { reset, title, message, redirect } = response;
 
-  removeValidation(form)
+  removeValidation(form);
 
-  if (typeof reset === 'undefined') {
-    form.reset()
+  if (typeof reset === "undefined") {
+    form.reset();
   }
 
   if (title || message) {
-    timeout = 3000
+    timeout = 3000;
     swal({
-      title: title || 'Obrigado',
-      text: message || 'Enviado com sucesso!',
-      icon: 'success',
+      title: title || "Obrigado",
+      text: message || "Enviado com sucesso!",
+      icon: "success",
       timer: timeout,
       buttons: false
-    })
+    });
   } else {
-    timeout = 100
+    timeout = 100;
   }
 
   if (redirect) {
     setTimeout(() => {
-      window.location.replace(redirect)
-    }, timeout)
+      window.location.replace(redirect);
+    }, timeout);
   }
-}
+};
 
 const handleError = (response, form) => {
-  removeValidation(form)
-  addValidation(response, form)
-}
+  removeValidation(form);
+  addValidation(response, form);
+};
 
 const handleOnSubmit = async event => {
-  event.preventDefault()
+  event.preventDefault();
 
-  loading(event.target)
+  loading(event.target);
 
-  const form = event.target.closest('.form')
-  const formData = dataAppend(form)
+  const form = event.target.closest(".form");
+  const formData = dataAppend(form);
 
   try {
     const response = await axios({
-      method: 'post',
-      headers: { 'Content-Type': 'multipart/form-data' },
+      method: "post",
+      headers: { "Content-Type": "multipart/form-data" },
       url: form.action,
       data: formData
-    })
+    });
 
-    handleSuccess(response.data, form)
+    handleSuccess(response.data, form);
   } catch (err) {
-    handleError(err.response.data, form)
+    handleError(err.response.data, form);
   }
 
-  loading(event.target, false)
-}
+  loading(event.target, false);
+};
 
 const Send = buttons => {
   buttons.forEach(button => {
-    button.addEventListener('click', event => handleOnSubmit(event))
-  })
-}
+    button.addEventListener("click", event => handleOnSubmit(event));
+  });
+};
 
-export default Send
+export default Send;

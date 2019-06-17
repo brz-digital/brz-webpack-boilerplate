@@ -1,7 +1,6 @@
 const path = require('path')
 const glob = require('glob')
 
-const StyleLintPlugin = require('stylelint-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const WebpackBar = require('webpackbar')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
@@ -96,7 +95,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new StyleLintPlugin(),
     new MiniCssExtractPlugin({
       filename: path.join('styles', 'app.min.css')
     }),
